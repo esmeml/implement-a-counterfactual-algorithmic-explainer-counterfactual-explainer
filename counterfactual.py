@@ -5,13 +5,13 @@ from typing import Callable
 
 np.seterr(all='raise')
 
-def mad(data: np.ndarray):
+def mad(data: np.ndarray) -> np.ndarray:
     """Compute median absolute deviation"""
     median = np.median(data, axis=0)
     mad = np.median(np.abs(data - median), axis=0)
     return mad
 
-def distance(x: np.ndarray, xp: np.ndarray, mad: np.ndarray, weights: np.ndarray):
+def distance(x: np.ndarray, xp: np.ndarray, mad: np.ndarray, weights: np.ndarray) -> float:
     """compute distance between 2 vectors"""
     abs_diff = np.abs(x - xp) * weights
     d = np.sum(abs_diff / mad)
